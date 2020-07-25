@@ -1,0 +1,243 @@
+@import "./Variables";
+@import "./mixin";
+
+img {
+  width: 100%;
+  height: 100%;
+}
+body {
+  font-size: $font-size;
+  background-color: lighten($color: $backgroundc-color-1, $amount: 15);
+}
+
+.article-preview-component {
+  width: 800px;
+  height: fit-content;
+  margin: 20vh auto;
+  font-family: "monrope", sans-serif;
+  @include flex(row);
+
+  box-shadow: $box-shadow;
+  background-color: $backgroundc-color-2;
+  border-radius: $border-radius-1;
+
+  .preview-image {
+    width: 300px;
+    margin: 0;
+    overflow: hidden;
+    img {
+      object-fit: contain;
+      transform: scale(1.35);
+      transform-origin: 1%;
+    }
+  }
+  .article
+  {
+    width: 50%;
+    margin: 30px 50px;
+    @include flex(column);
+
+    font-family: "manrope", sans-serif;
+    .article-heading {
+      color: $color-1;
+      margin: 10px 0;
+    }
+    .article-description {
+      color: $color-2;
+      margin: 10px 0 20px 0;
+    }
+    .author 
+    {
+      @include flex(row);
+
+      .author-profile-pic {
+        width: 45px;
+        height: 45px;
+        border-radius: 50px;
+        overflow: hidden;
+      }
+      .author-details {
+        width: fit-content;
+        height: fit-content;
+        margin: 5px 0 0 15px;
+        flex: 1;
+        .author-name {
+          color: $color-1;
+          margin: 0;
+          font-size: $font-size-3;
+        }
+        .published-date {
+          color: $color-2;
+          font-weight: 200;
+          margin: 0;
+          font-size: $font-size-4;
+        }
+      }
+      .share-button
+      {
+          width: 15px;
+          height: 15px;
+          padding: 10px;
+          background-color: $color-4;
+          border-radius: 50px;
+          margin: 0 0 0 0;
+          user-select: none;
+          cursor: pointer;
+          &:hover 
+          {
+            outline: none;
+            background-color: $color-2;
+            .share-icon
+            {
+              filter: invert(35%) sepia(12%) saturate(109%) hue-rotate(189deg)
+                brightness(1002%) contrast(95%);
+            }
+          }
+  
+          .share-details 
+          {
+            display: none;
+            width: 210px;
+            padding: 18px 10px;
+            position: relative;
+            top: -115px;
+            right: 105px;
+            background-color: $color-1;
+            box-shadow: $box-shadow;
+            border-radius: $border-radius-1;
+
+            h6 {
+              text-transform: uppercase;
+              letter-spacing: 5px;
+              color: $color-3;
+              margin: 0 15px;
+              align-self: center;
+            }
+            img {
+              object-fit: contain;
+              width: 20px;
+              margin: 0 8px;
+              align-self: center;
+            }
+            &::after {
+              content: " ";
+              position: absolute;
+              top: 100%; /* At the bottom of the tooltip */
+              left: 43%;
+              border-width: 13px;
+              border-style: solid;
+              border-color: $color-1 transparent transparent transparent;
+            }
+          }
+      }
+    }
+  }
+}
+
+///////////////  mobile version /////////////////
+
+@include smartphone {
+  .article-preview-component {
+    width: 300px;
+    margin: 20vh auto;
+    @include flex(column);
+    border-radius: $border-radius-1;
+    overflow: hidden;
+    .preview-image {
+      width: 100%;
+      height: 180px;
+      img {
+        object-fit: cover;
+        transform: scale(1);
+      }
+    }
+    .article {
+      width: 90%;
+      margin: 20px 0 10px 5px;
+      padding: 10px;
+
+      .article-heading {
+        width: fit-content;
+        margin: 0 0 0 19px;
+        font-size: $font-size-3;
+      }
+      .article-description {
+        font-size: $font-size-4;
+        padding: 20px;
+        margin: 0;
+      }
+      .author 
+      {
+        margin: 0 20px;
+        .author-profile-pic
+        {
+            width: 35px;
+            height: 36px;
+            img 
+            {
+              transform: scale(1);
+            }
+        }
+        .author-details 
+        {
+          margin: 0 0 0 14px;
+          .author-name 
+          {
+            font-size: $font-size-4;
+          }
+        }
+        .share-button
+        {
+            width: 16px;
+            height: 15px;
+            margin: 0 0 0 0;
+            z-index: 1;
+            &:hover 
+            {
+              outline: none;
+              background-color: $color-4;
+              .share-icon
+              {
+                fill: $color-4;
+                filter: none;
+              }
+            }
+            .share-icon
+            {
+              object-fit: contain;
+              width: 20px;
+              transform: translateY(0px);
+            }
+
+            .share-details 
+            {
+              width: 270px;
+              padding:20px;
+              top:-35px;
+              right: 243px;
+              border-radius: 0px;
+              z-index: -10;
+              h6
+              {
+                color: $color-3;
+                margin: 0 15px;
+                align-self: center;
+              }
+              img 
+              {
+                object-fit: contain;
+                width: 20px;
+                margin: 0 8px;
+                align-self: center;
+              }
+              &::after 
+              {
+              display: none;
+              }
+            }
+        }
+        
+      }
+    }
+  }
+}

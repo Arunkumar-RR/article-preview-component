@@ -1,0 +1,12 @@
+@mixin smartphone {
+    @media   (max-width: 1100px) 
+    {
+      @content;
+    }
+  }
+
+@mixin flex ( $direction )
+{
+    display: flex;
+    flex-flow: $direction  wrap;
+}
